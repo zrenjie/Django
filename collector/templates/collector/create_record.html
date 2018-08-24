@@ -1,0 +1,94 @@
+{% extends 'collector/base.html'%}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css'%}" />
+{% endblock %}
+
+{% block title%}Create record{% endblock%}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'collector:home'%}">Records</a></li>
+    <li class="breadcrumb-item">Create</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row  justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <form enctype="multipart/form-data" action="" method="post">
+                {% csrf_token %}
+                
+                {{ form.non_field_errors }}
+                
+                {% for fieldset in form.fieldsets %}
+                    <fieldset class="module aligned">
+                        {% if fieldset.name %}
+                            <h2>{{fieldset.name}}</h2>
+                            
+                            {% if fieldset.name == 'Basic'%}
+                                <input id="id_absolute_path" type="hidden" name="absolute_path" />
+                                {% if image_file_path %}
+                                    <div class="form-row">
+                                        <div>
+                                            <label for="id_image_file">Image file:</label>
+                                            <p class="file-upload">
+                                                Currently:<input type="text" value="{{image_file_path}}" disabled /><br/>
+                                                Change:<input type="file" id="id_image_file" onchange="getURL(this)" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="form-row">
+                                        <label for="id_image_file">Image file:</label><input type="file" id="id_image_file" onchange="getURL(this)"  required></input>
+                                    </div>
+                                {% endif %}
+                                
+                                {% for field in fieldset %}
+                                    <div class="form-row">
+                                        
+                                        <div>
+                                            {{field.label_tag}}{{field}}{{field.errors}}
+                                        </div>
+                                    </div>
+                                {% endfor%}
+                            {% elif fieldset.name == "Correction"%}
+                                <div class="form-row">
+                                    {% for field in fieldset %}
+                                        <div class="field-box mx-2">
+                                            {{field.errors}}{{field}}<label class="vCheckboxLabel inline" for={{ field.id_for_label}}>{{field.label}}</label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            
+                            {% endif %}
+                        {% endif%}
+                    </fieldset>
+                {% endfor %}
+            
+                <div class="submit-row">
+                    <input type="submit" value="Save" class="default" name="_save" />
+                    <input type="submit" value="Save and add other" name="_addanother" />
+                    <input type="submit" value="Save and continue editing" name="_continue" />
+                </div>
+            </form>
+            
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+    var url = ""
+    function getURL(node){
+        var url = "window"
+        
+        node.select();
+        window.parent.document.body.focus();
+        url = document.selection.createRange().text;
+        
+        document.getElementById("id_absolute_path").value = url;
+        return url;
+    }
+    </script>
+{% endblock %}

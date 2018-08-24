@@ -1,0 +1,94 @@
+{% extends 'collector/base.html'%}
+{% load static i18n %}
+
+{% block title%}Record list{% endblock%}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/changelists.css'%}">
+{% endblock%}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'collector:home' %}">{% trans 'Home' %}</a>
+    </div>
+{% endblock %}
+
+{% block bodyclass%}change-list{% endblock%}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content_title %}
+    <h1>Record List</h1>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <ul class="object-tools">
+            <li>
+                <a href="{% url 'collector:create_record'%}" class="addlink">Add record</a>
+            </li>
+        <ul>
+    </div>
+    
+    <div class="module" id="changelist">
+        <form id="changlist-form" method="post">
+            <div class="results">
+                <table id="result_list">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <div class="text"><span>Record</span></div>
+                                <div class="clear"></div>
+                            </th>
+                            <th scope="col">
+                                <div class="text"><span>Image File</span></div>
+                                <div class="clear"></div>
+                            </th>
+                            <th scope="col">
+                                <div class="text"><span>Path Prefix</span></div>
+                                <div class="clear"></div>
+                            </th>
+                            <th scope="col">
+                                <div class="text"><span>File Type</span></div>
+                                <div class="clear"></div>
+                            </th>
+                            <th scope="col">
+                                <div class="text"><span>Machine ID</span></div>
+                                <div class="clear"></div>
+                            </th>
+                            <th scope="col">
+                                <div class="text"><span>Correction</span></div>
+                                <div class="clear"></div>
+                            </th>
+                            <th scope="col">
+                                <div class="text"><span>Normal</span></div>
+                                <div class="clear"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for record in record_list %}
+                            <tr class="{% cycle 'row1' 'row2'%}">
+                                <td><a href="{% url 'collector:update_record' record.id %}">{{record}}</a></td>
+                                <td width="10%">{{record.image_file_path}}</td>
+                                <td width="10%">{{record.path_prefix}}</td>
+                                <td>{{record.file_type}}</td>
+                                <td>{{record.machine_id}}</td>
+                                <td>{{record.correction}}</td>
+                                <td>
+                                    {%if record.normal%}
+                                        <img src="{% static 'admin/img/icon-yes.svg' %}" alt="True" />
+                                    {% else %}
+                                        <img src="{% static 'admin/img/icon-no.svg' %}" alt="No" />
+                                    {% endif %}
+                                </td>
+                            <tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+    {% include 'collector/includes/pagination.html'%}
+{% endblock %}

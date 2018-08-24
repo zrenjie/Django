@@ -1,0 +1,7 @@
+/.settings
+/db.sqlite3
+/venv
+/ImageCollector2/__pycache__/
+/collector/__pycache__/
+/collector/migrations/
+/collector/templatetags/__pycache__/

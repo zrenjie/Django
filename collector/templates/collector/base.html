@@ -1,0 +1,64 @@
+{% load static i18n %}
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} | Image collector</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'collector/css/jquery-ui.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'collector/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'collector/css/app.css' %}" />
+
+        {% block stylesheet %}{% endblock %}
+    </head>
+    
+    <body class="{% block bodyclass%}{% endblock%}">
+        {% block body %}            
+            <div id="container">
+                <div id="header">
+                    <div id="branding">
+                        <h1 id="site-name"><a href="{% url 'collector:home'%}">Image Collector</a></h1>
+                    </div>
+                    
+                    <div id="user-tools">
+                        {% block welcome-msg %}
+                            {% trans 'Welcome,' %}
+                            <strong>{% firstof user.get_short_name user.get_username %}</strong> / 
+                        {% endblock%}
+                        {% block userlinks %}
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'collector:logout'%}" >{% trans 'Log out '%}</a>
+                            {% else %}
+                                <a href="{% url 'collector:login'%}" >{% trans 'Log in '%}</a>
+                            {%endif %}
+                        {% endblock%}
+                    </div>
+
+                </div> 
+                
+                {% block breadcrumbs %}
+                    <div class="breadcrumbs">
+                        <a href="{% url 'collector:home' %}">{% trans 'Home' %}</a>
+                        {% if title %} &rsaquo; {{ title }}{% endif %}
+                    </div>
+                {% endblock %}
+                
+                <div id="content" class="{% block coltype%}colM{% endblock %}">
+                    {% block content_title %}
+                        {% if title %}
+                            <h1>{{title}}</h1>
+                        {% endif %}
+                    {% endblock%}
+                    
+                    {% block content %}
+                    
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+    </body>
+    
+    <script src="{% static 'collector/js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'collector/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'collector/js/popper.min.js'%}"></script>
+    
+    {% block javascript %}{% endblock %}
+</html>
