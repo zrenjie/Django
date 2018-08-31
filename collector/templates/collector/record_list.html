@@ -5,6 +5,7 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/changelists.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'collector/css/app.css' %}" />
 {% endblock%}
 
 {% block breadcrumbs %}
@@ -18,14 +19,14 @@
 {% block coltype %}flex{% endblock %}
 
 {% block content_title %}
-    <h1>Record List</h1>
+    <h1>{% trans 'Record List' %}</h1>
 {% endblock %}
 
 {% block content %}
     <div>
         <ul class="object-tools">
             <li>
-                <a href="{% url 'collector:create_record'%}" class="addlink">Add record</a>
+                <a href="{% url 'collector:create_record'%}" class="addlink">{% trans 'Add Record' %}</a>
             </li>
         <ul>
     </div>
@@ -37,31 +38,31 @@
                     <thead>
                         <tr>
                             <th scope="col">
-                                <div class="text"><span>Record</span></div>
+                                <div class="text"><span>{% trans 'Record' %}</span></div>
                                 <div class="clear"></div>
                             </th>
                             <th scope="col">
-                                <div class="text"><span>Image File</span></div>
+                                <div class="text"><span>{% trans 'Image File' %}</span></div>
                                 <div class="clear"></div>
                             </th>
                             <th scope="col">
-                                <div class="text"><span>Path Prefix</span></div>
+                                <div class="text"><span>{% trans 'Path Prefix' %}</span></div>
                                 <div class="clear"></div>
                             </th>
                             <th scope="col">
-                                <div class="text"><span>File Type</span></div>
+                                <div class="text"><span>{% trans 'File Type' %}</span></div>
                                 <div class="clear"></div>
                             </th>
                             <th scope="col">
-                                <div class="text"><span>Machine ID</span></div>
+                                <div class="text"><span>{% trans 'Machine ID' %}</span></div>
                                 <div class="clear"></div>
                             </th>
                             <th scope="col">
-                                <div class="text"><span>Correction</span></div>
+                                <div class="text"><span>{% trans 'Correction' %}</span></div>
                                 <div class="clear"></div>
                             </th>
                             <th scope="col">
-                                <div class="text"><span>Normal</span></div>
+                                <div class="text"><span>{% trans 'Normal' %}</span></div>
                                 <div class="clear"></div>
                             </th>
                         </tr>

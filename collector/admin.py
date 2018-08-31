@@ -2,7 +2,12 @@ from django.contrib import admin
 from . import models
 
 # Register your models here.
+class LabelInLine(admin.TabularInline):
+    model = models.Label
+    extra = 1
+    
 class RecordAdmin(admin.ModelAdmin):
+    inlines = [LabelInLine, ]
     list_display = ("__str__", "machine_id", "work_mode",
                   "sync_mode", "normal", "created_at", "last_modified_at", "creator")
     
@@ -14,8 +19,6 @@ class RecordAdmin(admin.ModelAdmin):
                 'fields': ("image_file_path", "file_type", "machine_id", "work_mode",
                   "sync_mode", 'normal', 'creator')
                     }),
-            ('Correction', {
-                'fields': (('offset_corrected', 'gain_corrected', 'defect_corrected'),), }),
             )
 
  

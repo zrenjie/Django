@@ -17,7 +17,6 @@
                     <div id="branding">
                         <h1 id="site-name"><a href="{% url 'collector:home'%}">Image Collector</a></h1>
                     </div>
-                    
                     <div id="user-tools">
                         {% block welcome-msg %}
                             {% trans 'Welcome,' %}
@@ -29,7 +28,26 @@
                             {% else %}
                                 <a href="{% url 'collector:login'%}" >{% trans 'Log in '%}</a>
                             {%endif %}
+                            
+                            
                         {% endblock%}
+                    </div>
+                    <div id="language_form">
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <select name="language">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES%}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code}}" {% if language.code|slice:'0:2' == LANGUAGE_CODE|slice:'0:2'%} selected{% endif%}>
+                                        {{language.name_local}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <input type="submit" value="Go" class="btn my-4 p-1" title="{% trans 'Click to switch language'%}">
+                        </form>
                     </div>
 
                 </div> 
@@ -40,6 +58,18 @@
                         {% if title %} &rsaquo; {{ title }}{% endif %}
                     </div>
                 {% endblock %}
+                
+                {% block messages %}
+                    {% if messages %}
+                        <ul class="messagelist">
+                            {% for message in messages %}
+                                <li {% if message.tags%} class="{{message.tags}}{% endif %}">{{message|capfirst}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endblock %}
+                
+                
                 
                 <div id="content" class="{% block coltype%}colM{% endblock %}">
                     {% block content_title %}
@@ -59,6 +89,7 @@
     <script src="{% static 'collector/js/jquery-3.3.1.min.js'%}"></script>
     <script src="{% static 'collector/js/bootstrap.min.js'%}"></script>
     <script src="{% static 'collector/js/popper.min.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     
     {% block javascript %}{% endblock %}
 </html>

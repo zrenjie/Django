@@ -10,18 +10,106 @@ ul li {
 }
 
 #header {
-    padding: 15px 40px;
+    padding: 0px 10px 0px 40px;
     height: 54px;
     line-height: 54px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#branding {
+    margin-right: auto;
 }
 
 #user-tools {
-    float: right;
+    display: inline-block;
     padding: 0;
-    margin: auto;
     font-weight: 300;
     font-size: 11px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     text-align: right;
+}
+
+#language_form {
+    display: inline-block;
+    margin-top: 0px;
+    margin-left:20px;
+    float: right;
+}
+
+#version-switcher {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    padding: 0px;
+    margin: 0px;
+    z-index: 1;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-image: none;
+}
+
+#doc-languages li.current {
+    padding : 15px 8px;
+    display: inline-block;
+    
+}
+
+#version-switcher{
+    position:fixed;
+    right:15px;
+    bottom:15px;
+    margin:0;
+    padding:0;
+    z-index:1;
+    pointer-events:none;
+    list-style:none
+}
+#version-switcher .icon{
+    margin-right:4px
+}
+    
+#version-switcher ul{
+    text-align:right
+}
+
+#doc-versions,#doc-languages{
+    margin-top:0.5em;
+    margin-bottom:0.5em
+}
+
+#doc-versions li,#doc-languages li{
+    display:none;
+    margin:0 3px;
+    font-family:"Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+    color:#0C3C26;
+    font-size:12px;
+    font-size:1.2rem;
+    pointer-events:auto
+}
+
+#doc-versions li.current,#doc-languages li.current{
+    display:inline-block;
+    background:#F1FFF7;
+    padding:8px 15px;
+    border:1px solid #CFE3DC;
+    border-radius:4px
+}
+
+#doc-versions li a,#doc-languages li a{
+    display:inline-block;
+    background:#F1FFF7;
+    color:#44B78B;
+    text-decoration:none;
+    font-weight:700;
+    padding:8px 15px;
+    border:1px solid #CFE3DC;
+    border-radius:4px
+}
+
+#doc-versions li a:hover,#doc-languages li a:hover{
+    color:#20AA76;
+    border:1px solid #93D7B7
 }

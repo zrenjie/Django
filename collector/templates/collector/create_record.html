@@ -1,5 +1,5 @@
 {% extends 'collector/base.html'%}
-{% load static %}
+{% load static i18n%}
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css'%}" />
@@ -8,8 +8,8 @@
 {% block title%}Create record{% endblock%}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{% url 'collector:home'%}">Records</a></li>
-    <li class="breadcrumb-item">Create</li>
+    <li class="breadcrumb-item"><a href="{% url 'collector:home'%}">{% trans 'Records' %}</a></li>
+    <li class="breadcrumb-item">{% trans 'Create' %}</li>
 {% endblock %}
 
 {% block content %}
@@ -24,13 +24,15 @@
                     <fieldset class="module aligned">
                         {% if fieldset.name %}
                             <h2>{{fieldset.name}}</h2>
+                            {% trans 'Fieldset: Basic' as fieldset_basic %}
+                            {% trans 'Fieldset: Correction' as fieldset_correction %}
                             
-                            {% if fieldset.name == 'Basic'%}
+                            {% if fieldset.name == fieldset_basic%}
                                 <input id="id_absolute_path" type="hidden" name="absolute_path" />
                                 {% if image_file_path %}
                                     <div class="form-row">
                                         <div>
-                                            <label for="id_image_file">Image file:</label>
+                                            <label for="id_image_file">{% trans 'Image file:' %}</label>
                                             <p class="file-upload">
                                                 Currently:<input type="text" value="{{image_file_path}}" disabled /><br/>
                                                 Change:<input type="file" id="id_image_file" onchange="getURL(this)" />
@@ -39,7 +41,7 @@
                                     </div>
                                 {% else %}
                                     <div class="form-row">
-                                        <label for="id_image_file">Image file:</label><input type="file" id="id_image_file" onchange="getURL(this)"  required></input>
+                                        <label for="id_image_file">{% trans 'Image file:' %}</label><input type="file" id="id_image_file" name="image_file" onchange="getURL(this)"  required></input>
                                     </div>
                                 {% endif %}
                                 
@@ -51,7 +53,7 @@
                                         </div>
                                     </div>
                                 {% endfor%}
-                            {% elif fieldset.name == "Correction"%}
+                            {% elif fieldset.name == fieldset_correction%}
                                 <div class="form-row">
                                     {% for field in fieldset %}
                                         <div class="field-box mx-2">
@@ -64,11 +66,42 @@
                         {% endif%}
                     </fieldset>
                 {% endfor %}
+                
+                <table class="table">
+                    {{labels_formset.management_form}}
+                    
+                    {% for form in labels_formset.forms %}
+                        {% if forloop.first%}
+                            <thead>
+                                <tr>
+                                    {% for field in form.visible_fields %}
+                                        <th>{{field.label|capfirst}}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                        {% endif %}
+                        
+                        <tr class="{% cycle row1 row2 %} formset_row">
+                            {% for field in form.visible_fields %}
+                                <td>
+                                    {% if forloop.first %}
+                                        {% for hidden in form.hidden_fields %}
+                                            {{hidden}}
+                                        {% endfor %}
+                                    {% endif%}
+                                    {{field.errors.as_ul}}
+                                    {{field}}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+
             
                 <div class="submit-row">
-                    <input type="submit" value="Save" class="default" name="_save" />
-                    <input type="submit" value="Save and add other" name="_addanother" />
-                    <input type="submit" value="Save and continue editing" name="_continue" />
+                    <input type="submit" value="{% trans 'Save' context 'button'%} " class="default" name="_save" />
+                    <input type="submit" value="{% trans 'Save and add other'  context 'button'%}" name="_addanother" />
+                    <input type="submit" value="{% trans 'Save and continue editing'  context 'button'%}" name="_continue" />
                 </div>
             </form>
             
@@ -79,16 +112,18 @@
 
 {% block javascript %}
     <script type="text/javascript">
-    var url = ""
     function getURL(node){
-        var url = "window"
-        
-        node.select();
-        window.parent.document.body.focus();
-        url = document.selection.createRange().text;
-        
-        document.getElementById("id_absolute_path").value = url;
-        return url;
+        document.getElementById("id_absolute_path").value = node.value
     }
     </script>
+    <script src="{% static 'collector/js/jquery.formset.js'%}"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script type="text/javascript">
+        $('.formset_row').formset({
+            addText: gettext('Add another'),
+            deleteText: gettext('Delete'),
+            prefix: 'label_set'
+        });
+    </script>
+
 {% endblock %}

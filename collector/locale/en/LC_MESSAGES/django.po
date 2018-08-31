@@ -1,0 +1,211 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-30 17:42+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\forms.py:9
+msgid "Form field: Offset corrected"
+msgstr "Offset corrected"
+
+#: .\forms.py:10
+msgid "Form field: Gain corrected"
+msgstr "Gain corrected"
+
+#: .\forms.py:11
+msgid "Form field: Defect corrected"
+msgstr "Defect corrected"
+
+#: .\forms.py:17 .\forms.py:33 .\templates\collector\create_record.html:27
+msgid "Fieldset: Basic"
+msgstr "Basic"
+
+#: .\forms.py:20 .\forms.py:36 .\templates\collector\create_record.html:28
+msgid "Fieldset: Correction"
+msgstr "Correction"
+
+#: .\forms.py:41 .\models.py:67
+msgid "Field Name: Label value"
+msgstr "Label value"
+
+#: .\models.py:10
+msgid "Field Name: Path prefix"
+msgstr "Path prefix"
+
+#: .\models.py:13
+msgid "Field Name: File type"
+msgstr "File type"
+
+#: .\models.py:15
+msgid "Field Name: Machine ID"
+msgstr "Machine ID"
+
+#: .\models.py:18
+msgid "Field Name: Work mode"
+msgstr "Work mode"
+
+#: .\models.py:25
+msgid "External"
+msgstr ""
+
+#: .\models.py:26
+msgid "Soft"
+msgstr ""
+
+#: .\models.py:27
+msgid "Auto AED "
+msgstr ""
+
+#: .\models.py:28
+msgid "Manual"
+msgstr ""
+
+#: .\models.py:29
+msgid "Scan AED"
+msgstr ""
+
+#: .\models.py:30
+msgid "Field Name: Sync mode"
+msgstr "Sync mode"
+
+#: .\models.py:33
+msgid "Field Name: Normal"
+msgstr "Normal"
+
+#: .\models.py:34
+msgid "Field Name: Created at"
+msgstr "Created at"
+
+#: .\models.py:35
+msgid "Field Name: Creator"
+msgstr "Creator"
+
+#: .\models.py:37
+msgid "Field Name: Last modifier"
+msgstr "Last modifier"
+
+#: .\models.py:38
+msgid "Field Name: Last modified at"
+msgstr "Last modified at"
+
+#: .\models.py:66
+msgid "Field Name: Label type"
+msgstr "Label type"
+
+#: .\models.py:68
+msgid "Field Name: Record"
+msgstr "Record"
+
+#: .\templates\collector\base.html:34
+msgid "Click to switch language"
+msgstr ""
+
+#: .\templates\collector\base.html:39
+msgid "Welcome,"
+msgstr ""
+
+#: .\templates\collector\base.html:44
+msgid "Log out "
+msgstr ""
+
+#: .\templates\collector\base.html:46
+msgid "Log in "
+msgstr ""
+
+#: .\templates\collector\base.html:57 .\templates\collector\record_list.html:13
+msgid "Home"
+msgstr ""
+
+#: .\templates\collector\create_record.html:11
+msgid "Records"
+msgstr ""
+
+#: .\templates\collector\create_record.html:12
+msgid "Create"
+msgstr ""
+
+#: .\templates\collector\create_record.html:35
+#: .\templates\collector\create_record.html:44
+msgid "Image file:"
+msgstr ""
+
+#: .\templates\collector\create_record.html:102
+msgctxt "button"
+msgid "Save"
+msgstr ""
+
+#: .\templates\collector\create_record.html:103
+msgctxt "button"
+msgid "Save and add other"
+msgstr ""
+
+#: .\templates\collector\create_record.html:104
+msgctxt "button"
+msgid "Save and continue editing"
+msgstr ""
+
+#: .\templates\collector\record_list.html:22
+msgid "Record List"
+msgstr ""
+
+#: .\templates\collector\record_list.html:29
+msgid "Add Record"
+msgstr ""
+
+#: .\templates\collector\record_list.html:41
+msgid "Record"
+msgstr ""
+
+#: .\templates\collector\record_list.html:45
+msgid "Image File"
+msgstr ""
+
+#: .\templates\collector\record_list.html:49
+msgid "Path Prefix"
+msgstr ""
+
+#: .\templates\collector\record_list.html:53
+msgid "File Type"
+msgstr ""
+
+#: .\templates\collector\record_list.html:57
+msgid "Machine ID"
+msgstr ""
+
+#: .\templates\collector\record_list.html:61
+msgid "Correction"
+msgstr ""
+
+#: .\templates\collector\record_list.html:65
+msgid "Normal"
+msgstr ""
+
+#: .\views.py:85
+msgid "Create record successfully"
+msgstr ""
+
+#: .\views.py:181
+msgid "Update record successfully"
+msgstr ""
+
+#: .\views.py:185
+msgid "Update record successfully and add another"
+msgstr ""
+
+#: .\views.py:189
+msgid "Update record successfully and continue editing"
+msgstr ""
